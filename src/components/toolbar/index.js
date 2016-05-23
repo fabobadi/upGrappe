@@ -1,10 +1,12 @@
 /* eslint arrow-body-style:0 new-cap:0 */
 
-import React, { PropTypes, StyleSheet, ToolbarAndroid } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import { NavBar } from 'react-native-router-flux';
+import React, { PropTypes } from 'react';
 
-import Colors from '../../styles';
+import { StyleSheet, ToolbarAndroid } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Actions, NavBar } from 'react-native-router-flux';
+
+import { Colors } from '../../styles';
 import Metrics from '../../metrics';
 import Platform from '../../utils/platform';
 
@@ -31,6 +33,7 @@ export const Android = ({
   const back = {
     // TODO: find better indicator
     navIconName: backButtonImage ? 'chevron-left' : undefined,
+    onIconClicked: backButtonImage ? Actions.pop : undefined,
   };
 
   return (
