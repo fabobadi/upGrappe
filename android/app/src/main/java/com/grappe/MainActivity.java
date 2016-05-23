@@ -2,7 +2,6 @@ package com.grappe;
 
 import com.facebook.react.ReactActivity;
 import io.realm.react.RealmReactPackage;
-import com.brentvatne.RCTVideo.ReactVideoPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
 import com.facebook.react.ReactPackage;
@@ -40,7 +39,6 @@ public class MainActivity extends ReactActivity {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
             new RealmReactPackage(),
-            new ReactVideoPackage(),
             new VectorIconsPackage(),
             new RNSpinkitPackage()
         );

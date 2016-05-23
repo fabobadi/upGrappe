@@ -1,12 +1,13 @@
-import React, {View, Text, StyleSheet} from 'react-native';
+import React, { PropTypes } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 // import StyleSheet from 'react-native-debug-stylesheet';
 
-import {Colors} from '../../styles';
+import { Colors } from '../../styles';
 
 
 const TabIcon = (props) => {
-  const color = props.selected ? Colors.RED : Colors.DISABLED;
+  const color = props.selected ? Colors.MAIN : Colors.DISABLED;
   return (
     <View style={styles.container}>
       <Icon style={styles.icons} name={props.image} size={22} color={color} />
@@ -18,13 +19,13 @@ const TabIcon = (props) => {
 TabIcon.defaultProps = {
   title: 'Tab',
   image: 'rocket',
-  selected: false
+  selected: false,
 };
 
 TabIcon.propTypes = {
-  title: React.PropTypes.string,
-  image: React.PropTypes.string,
-  selected: React.PropTypes.bool
+  title: PropTypes.string,
+  image: PropTypes.string,
+  selected: PropTypes.bool,
 };
 
 const styles = StyleSheet.create({
@@ -32,14 +33,15 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 1
+    paddingTop: 0,
+    paddingBottom: 0,
   },
   icons: {
-    margin: 1
+    margin: 1,
   },
   text: {
-    fontSize: 12
-  }
+    fontSize: 12,
+  },
 });
 
 export default TabIcon;

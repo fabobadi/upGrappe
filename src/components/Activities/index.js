@@ -5,9 +5,9 @@ import { Actions } from 'react-native-router-flux';
 export default class Activities extends Component {
   render() {
     return (
-      <View style={{margin: 128}}>
+      <View style={{ margin: 128 }}>
         <Text onPress={Actions.analytics}>Grappe!</Text>
       </View>
-    )
+    );
   }
 }

@@ -6,7 +6,7 @@ import { StyleSheet } from 'react-native';
  */
 
 export const Colors = {
-  MAIN: '#16a085',
+  MAIN: '#d35400',
   WHITE: '#ecf0f1',
   DISABLED: '#96A5A6',
   BLURRED: '#B9C8F5',
