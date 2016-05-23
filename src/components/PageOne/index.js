@@ -6,7 +6,7 @@ export default class PageOne extends Component {
   render() {
     return (
       <View style={{margin: 128}}>
-        <Text onPress={Actions.pageTwo}>This is PageOne of Grappe!</Text>
+        <Text onPress={Actions.pageTwo}>Grappe!</Text>
       </View>
     )
   }
