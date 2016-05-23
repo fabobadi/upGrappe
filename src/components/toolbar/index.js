@@ -4,7 +4,7 @@ import React, { PropTypes, StyleSheet, ToolbarAndroid } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { NavBar } from 'react-native-router-flux';
 
-import { Colors } from '../../styles';
+import Colors from '../../styles';
 import Metrics from '../../metrics';
 import Platform from '../../utils/platform';
 

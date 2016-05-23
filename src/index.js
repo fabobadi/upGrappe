@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, BackAndroid } from 'react-native';
-import {Scene,  TabBar, Router, Actions } from 'react-native-router-flux';
+import { StyleSheet, BackAndroid } from 'react-native';
+import { Scene, Router, Actions } from 'react-native-router-flux';
 
 import Platform from './utils/platform';
 
@@ -42,8 +42,8 @@ export default class Routing extends Component {
             default="atlasses"
             direction="vertical"
           >
-            <Scene key="activities" component={Activities} title="Activities"/>
-            <Scene key="analytics" component={Analytics} title="Analytics"/>
+            <Scene key="activities" component={Activities} title="Activities" />
+            <Scene key="analytics" component={Analytics} title="Analytics" />
           </Scene>
         </Scene>
       </Router>
@@ -55,14 +55,14 @@ const styles = StyleSheet.create({
   tabbar: {
     borderTopWidth: 0.5,
     borderTopColor: 'grey',
-    backgroundColor: '#F9F9F9'
+    backgroundColor: '#F9F9F9',
   },
   transparent: {
     backgroundColor: 'transparent',
     borderBottomWidth: 0,
-    borderBottomColor: 'transparent'
+    borderBottomColor: 'transparent',
   },
   title: {
-    color: 'white'
-  }
+    color: 'white',
+  },
 });
