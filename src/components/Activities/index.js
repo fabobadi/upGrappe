@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
-// import { Actions } from 'react-native-router-flux';
-import { Card } from 'react-native-material-design';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, StyleSheet } from 'react-native';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+import desing, { Colors } from '../../styles';
 
-export default class MinTemplate extends Component {
+import AllActivities from './allActivities';
+import NextActivities from './nextActivities';
+
+export default class Activities extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,72 +17,14 @@ export default class MinTemplate extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Card>
-          <Card.Media
-            image={<Image source={require('./Img/poda.jpg')} />}
-            overlay
-          >
-            <Card.Body>
-              <Text style={{ color: 'white', fontSize: 25 }}>All Activities</Text>
-            </Card.Body>
-          </Card.Media>
-        </Card>
-        <Card>
-          <Card.Body>
-            <View style={styles.cardDeshoje}>
-              <Text>Activitie #1</Text>
-              <Icon name="scissors" size={20} style={styles.icon} />
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-              <View style={styles.icon}>
-                <Icon name="camera" size={20} style={styles.icon} />
-                <Text> (0/50)</Text>
-              </View>
-              <View style={styles.icon}>
-                <Icon name="clock-o" size={25} style={styles.icon} />
-                <Text> 11:00</Text>
-              </View>
-            </View>
-          </Card.Body>
-        </Card>
-        <Card>
-          <Card.Body>
-            <View style={styles.cardDeshoje}>
-              <Text>Activitie #1</Text>
-              <Icon name="scissors" size={20} style={styles.icon} />
-              <Icon name="leaf" size={20} style={styles.icon} />
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-              <View style={styles.icon}>
-                <Icon name="camera" size={20} style={styles.icon} />
-                <Text> (0/50)</Text>
-              </View>
-              <View style={styles.icon}>
-                <Icon name="clock-o" size={25} style={styles.icon} />
-                <Text> 11:00</Text>
-              </View>
-            </View>
-          </Card.Body>
-        </Card>
-        <Card>
-          <Card.Body>
-            <View style={styles.cardDeshoje}>
-              <Text>Activitie #1</Text>
-              <Icon name="scissors" size={20} style={styles.icon} />
-              <Icon name="leaf" size={20} style={styles.icon} />
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-end' }}>
-              <View style={styles.icon}>
-                <Icon name="camera" size={20} style={styles.icon} />
-                <Text> (0/50)</Text>
-              </View>
-              <View style={styles.icon}>
-                <Icon name="clock-o" size={25} style={styles.icon} />
-                <Text> 11:00</Text>
-              </View>
-            </View>
-          </Card.Body>
-        </Card>
+        <ScrollableTabView
+          tabBarBackgroundColor={Colors.MAIN}
+          tabBarActiveTextColor={Colors.WHITE}
+          tabBarUnderlineColor={Colors.RED}
+        >
+          <NextActivities tabLabel="Next activities" />
+          <AllActivities tabLabel="All activities" />
+        </ScrollableTabView>
       </View>
     );
   }
@@ -88,15 +32,5 @@ export default class MinTemplate extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  cardDeshoje: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  icon: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginRight: 5,
   },
 });

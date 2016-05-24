@@ -59,7 +59,7 @@ export default class Routing extends Component {
     };
 
     const tab = {
-      ...padding,
+      // ...padding,
       ...navbar,
       icon: TabIcon,
     };
@@ -82,10 +82,10 @@ export default class Routing extends Component {
             tabBarStyle={styles.tabbar}
             {...noBack}
           >
-            <Scene key="activities" component={Activities} title="Activities" image="tasks" {...tab} />
-            <Scene key="vineyard" component={Vineyard} title="Vineyards" image="glass" {...tab} />
-            <Scene key="user" component={User} title="User" image="user" {...tab} />
-            <Scene key="tutorial" component={Tutorial} title="Tutorial" image="book" {...tab} />
+            <Scene key="activities" hideNavBar component={Activities} title="Activities" image="tasks" {...tab} />
+            <Scene key="vineyard" hideNavBar component={Vineyard} title="Vineyards" image="glass" {...tab} />
+            <Scene key="user" hideNavBar component={User} title="User" image="user" {...tab} />
+            <Scene key="tutorial" hideNavBar component={Tutorial} title="Tutorial" image="book" {...tab} />
           </Scene>
 
           {/* Set this to 'initial' to see it */}
