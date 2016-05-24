@@ -8,7 +8,9 @@ import TabIcon from './components/tab-icon';
 import Platform from './utils/platform';
 
 import Activities from './components/Activities';
-import Analytics from './components/Analytics';
+import Tutorial from './components/Tutorial';
+import Vineyard from './components/Vineyard';
+import User from './components/User';
 
 // Development help
 import Template from './utils/template';
@@ -52,10 +54,6 @@ export default class Routing extends Component {
       sceneStyle: { paddingTop: Metrics.NAVBAR_HEIGHT },
     };
 
-    const transparent = {
-      navigationBarStyle: styles.transparent,
-    };
-
     const navbar = {
       navBar: Toolbar,
     };
@@ -85,9 +83,9 @@ export default class Routing extends Component {
             {...noBack}
           >
             <Scene key="activities" component={Activities} title="Activities" image="tasks" {...tab} />
-            <Scene key="analytics" component={Analytics} title="Analytics" image="line-chart" {...tab} />
-            <Scene key="map" component={Activities} title="Map" image="map" {...tab} />
-            <Scene key="user" component={Activities} title="User" image="user" {...tab} />
+            <Scene key="vineyard" component={Vineyard} title="Vineyards" image="glass" {...tab} />
+            <Scene key="user" component={User} title="User" image="user" {...tab} />
+            <Scene key="tutorial" component={Tutorial} title="Tutorial" image="book" {...tab} />
           </Scene>
 
           {/* Set this to 'initial' to see it */}
