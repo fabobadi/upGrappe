@@ -1,6 +1,7 @@
 package com.grappe;
 
 import com.facebook.react.ReactActivity;
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import io.realm.react.RealmReactPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
@@ -38,6 +39,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new RCTCameraPackage(),
             new RealmReactPackage(),
             new VectorIconsPackage(),
             new RNSpinkitPackage()

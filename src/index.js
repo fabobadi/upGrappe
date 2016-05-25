@@ -7,10 +7,12 @@ import Toolbar from './components/toolbar/';
 import TabIcon from './components/tab-icon';
 import Platform from './utils/platform';
 
-import Activities from './components/Activities';
-import Tutorial from './components/Tutorial';
-import Vineyard from './components/Vineyard';
-import User from './components/User';
+import Activities from './components/activities';
+import Tutorial from './components/tutorial';
+import Vineyard from './components/vineyard';
+import User from './components/user';
+
+import Scan from './components/scan';
 
 // Development help
 import Template from './utils/template';
@@ -91,6 +93,7 @@ export default class Routing extends Component {
           {/* Set this to 'initial' to see it */}
           <Scene key="template" component={Template} title="Template" navigationBarStyle={styles.transparent} />
         </Scene>
+        <Scene hideNavBar key="scan" component={Scan} />
       </Router>
     );
   }

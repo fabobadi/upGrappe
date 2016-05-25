@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
-import desing, { Colors } from '../../styles';
+import { Colors } from '../../styles';
 
 import AllActivities from './allActivities';
 import NextActivities from './nextActivities';
+import Scan from './simpleScan';
 
 export default class Activities extends Component {
   constructor(props) {
@@ -22,6 +23,7 @@ export default class Activities extends Component {
           tabBarActiveTextColor={Colors.WHITE}
           tabBarUnderlineColor={Colors.RED}
         >
+          <Scan tabLabel="Simple Scan" />
           <NextActivities tabLabel="Next activities" />
           <AllActivities tabLabel="All activities" />
         </ScrollableTabView>
