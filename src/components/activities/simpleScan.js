@@ -41,7 +41,7 @@ export default class Scan extends Component {
             <Card.Body>
               <View style={styles.cardPhoto}>
                 <Text style={styles.textPhoto}>Begin Now!</Text>
-                <Icon style={styles.iconPhoto} name="camera" size={30} />
+                <Icon style={styles.iconPhoto} name="camera" size={40} />
               </View>
             </Card.Body>
           </Card.Media>
@@ -53,12 +53,12 @@ export default class Scan extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    justifyContent: 'space-between',
   },
   cardPhoto: {
-    alignSelf: 'flex-end',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
   },
   textPhoto: {
     color: 'white',

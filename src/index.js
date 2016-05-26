@@ -64,13 +64,13 @@ export default class Routing extends Component {
       // ...padding,
       ...navbar,
       icon: TabIcon,
+      sceneStyle: { paddingBottom: Metrics.NAVBAR_HEIGHT },
     };
 
     const noBack = {
       ...noSwipe,
       renderLeftButton: () => <View />,
     };
-
     return (
       <Router>
         <Scene key="root">
