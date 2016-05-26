@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, Dimensions } from 'react-native';
 import Camera from 'react-native-camera';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Actions } from 'react-native-router-flux';
+import renderIf from 'render-if';
 
 export default class SimpleScan extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-
+      areaVisibility: true,
     };
     this.takePicture = this.takePicture.bind(this);
   }
@@ -30,9 +31,11 @@ export default class SimpleScan extends Component {
           style={styles.preview}
           aspect={Camera.constants.Aspect.fill}
         />
-        <View style={styles.margin}>
-          <Text>Hola</Text>
-        </View>
+        {renderIf(this.state.areaVisibility)(
+          <View style={styles.margin}>
+            <Text style={{ color: 'white' }}>This area will be analyzed</Text>
+          </View>
+        )}
         <View style={styles.options}>
           <TouchableOpacity onPress={() => Actions.pop()}>
             <Icon name="chevron-left" size={40} style={styles.icon} />
@@ -40,7 +43,9 @@ export default class SimpleScan extends Component {
           <TouchableOpacity onPress={this.takePicture}>
             <Icon name="camera" size={40} style={styles.icon} />
           </TouchableOpacity>
-          <Icon name="tasks" size={40} style={styles.icon} />
+          <TouchableOpacity onPress={() => this.setState({ areaVisibility: !this.state.areaVisibility })}>
+            <Icon name="square-o" size={40} style={styles.icon} />
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -53,6 +58,9 @@ const styles = StyleSheet.create({
   },
   preview: {
     flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    height: Dimensions.get('window').height,
   },
   options: {
     flexDirection: 'row',
@@ -70,12 +78,12 @@ const styles = StyleSheet.create({
   },
   margin: {
     position: 'absolute',
-    bottom: 15,
-    padding: 0,
-    right: 20,
-    left: 20,
+    bottom: Dimensions.get('window').width / 2,
+    left: 0,
     borderRadius: 0,
     alignItems: 'center',
     backgroundColor: 'rgba(192, 57, 43,0.2)',
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height / 3,
   },
 });
