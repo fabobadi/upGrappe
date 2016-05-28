@@ -80,6 +80,23 @@ export default class NextActivities extends Component {
 
 const styles = StyleSheet.create({
   container: {
-
+    flex: 1,
+  },
+  cardDeshoje: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  icon: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginRight: 5,
+  },
+  button: {
+    fontSize: 15,
+    color: 'white',
+    borderRadius: 3,
+    borderWidth: 8,
+    borderColor: 'white',
   },
 });

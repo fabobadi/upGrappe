@@ -6,17 +6,17 @@ import { StyleSheet } from 'react-native';
  */
 
 export const Colors = {
-  MAIN: '#d35400',
+  MAIN: '#e6673d',
   WHITE: '#ecf0f1',
   DISABLED: '#96A5A6',
   BLURRED: '#B9C8F5',
   IOS: '#EFEFF2',
   RED: '#BC3B24',
-  GRAY: '#BDC3C7',
+  GRAY: '#7E7672',
 };
 
 const desing = StyleSheet.create({
-
+  //fontFamily: 'Myriad Pro',
 });
 
 export default desing;

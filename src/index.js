@@ -7,12 +7,16 @@ import Toolbar from './components/toolbar/';
 import TabIcon from './components/tab-icon';
 import Platform from './utils/platform';
 
+import Initial from './components/initial';
+import Intro from './components/intro';
+
 import Activities from './components/activities';
 import Tutorial from './components/tutorial';
 import Vineyard from './components/vineyard';
 import User from './components/user';
 
 import Scan from './components/scan';
+import PhotoAnalizis from './components/photoAnalizis';
 
 // Development help
 import Template from './utils/template';
@@ -52,9 +56,9 @@ export default class Routing extends Component {
       panHandlers: null,
     };
 
-    const padding = {
-      sceneStyle: { paddingTop: Metrics.NAVBAR_HEIGHT },
-    };
+    // const padding = {
+    //   sceneStyle: { paddingTop: Metrics.NAVBAR_HEIGHT },
+    // };
 
     const navbar = {
       navBar: Toolbar,
@@ -74,26 +78,28 @@ export default class Routing extends Component {
     return (
       <Router>
         <Scene key="root">
+          <Scene key="initial" initial hideNavBar component={Initial} />
+          <Scene key="intro" hideNavBar component={Intro} type={'replace'} />
           <Scene
             key="main"
-            initial
             tabs
             hideNavBar
             default="Grappe"
             direction="vertical"
             tabBarStyle={styles.tabbar}
             {...noBack}
+            type={'replace'}
           >
             <Scene key="activities" hideNavBar component={Activities} title="Activities" image="tasks" {...tab} />
             <Scene key="vineyard" hideNavBar component={Vineyard} title="Vineyards" image="glass" {...tab} />
-            <Scene key="user" hideNavBar component={User} title="User" image="user" {...tab} />
             <Scene key="tutorial" hideNavBar component={Tutorial} title="Tutorial" image="book" {...tab} />
+            <Scene key="user" hideNavBar component={User} title="User" image="user" {...tab} />
           </Scene>
-
-          {/* Set this to 'initial' to see it */}
-          <Scene key="template" component={Template} title="Template" navigationBarStyle={styles.transparent} />
+          <Scene hideNavBar key="scan" component={Scan} />
+          <Scene key="photoAnalizis" component={PhotoAnalizis} />
         </Scene>
-        <Scene hideNavBar key="scan" component={Scan} />
+        {/* Set this to 'initial' to see it */}
+        <Scene key="template" component={Template} title="Template" navigationBarStyle={styles.transparent} />
       </Router>
     );
   }

@@ -33,7 +33,7 @@ export default class Scan extends Component {
             </Text>
           </Card.Body>
         </Card>
-        <Card onPress={Actions.scan}>
+        <Card onPress={() => Actions.scan({ isSimple: true })}>
           <Card.Media
             image={<Image source={require('./Img/tankingPhoto.jpg')} />}
             overlay

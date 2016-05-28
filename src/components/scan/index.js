@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Dimensions } from 'react-native';
 import Camera from 'react-native-camera';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -7,18 +7,35 @@ import renderIf from 'render-if';
 
 export default class SimpleScan extends Component {
 
+  static get propTypes() {
+    return {
+      isSimple: PropTypes.any,
+    };
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       areaVisibility: true,
+      visible: false,
+      path: '',
     };
     this.takePicture = this.takePicture.bind(this);
+    this.defoliationAnalizis = this.defoliationAnalizis.bind(this);
   }
 
   takePicture() {
+    this.setState({ visible: !this.state.visible });
     this.camera.capture()
-      .then((data) => console.log(data))
+      .then((doc) => {
+        this.defoliationAnalizis();
+        this.setState({ path: doc });
+      })
       .catch(err => console.error(err));
+  }
+
+  defoliationAnalizis() {
+    setTimeout(() => this.setState({ visible: !this.state.visible }));
   }
 
   render() {
@@ -32,7 +49,7 @@ export default class SimpleScan extends Component {
           aspect={Camera.constants.Aspect.fill}
         />
         {renderIf(this.state.areaVisibility)(
-          <View style={styles.margin}>
+          <View style={styles.squareAnalized}>
             <Text style={{ color: 'white' }}>This area will be analyzed</Text>
           </View>
         )}
@@ -52,6 +69,11 @@ export default class SimpleScan extends Component {
   }
 }
 
+// TODO:
+// https://github.com/yamill/react-native-orientationhttps://github.com/yamill/react-native-orientation
+// Add question button
+// Add delete last
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -60,7 +82,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    height: Dimensions.get('window').height,
   },
   options: {
     flexDirection: 'row',
@@ -76,7 +97,7 @@ const styles = StyleSheet.create({
   icon: {
     color: 'white',
   },
-  margin: {
+  squareAnalized: {
     position: 'absolute',
     bottom: Dimensions.get('window').width / 2,
     left: 0,
@@ -85,5 +106,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(192, 57, 43,0.2)',
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height / 3,
+  },
+  spinner: {
+
   },
 });
