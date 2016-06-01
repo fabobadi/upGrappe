@@ -7,6 +7,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "apsl-react-native-button": "^2.5.0",
     "buffer": "^4.6.0",
     "feathers": "^2.0.1",
     "feathers-authentication": "^0.7.7",

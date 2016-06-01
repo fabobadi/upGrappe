@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Dimensions, Modal, Image } from 'react-native';
+import { View, StyleSheet, Dimensions, Image } from 'react-native';
 import { Colors } from '../../styles';
 import { Actions } from 'react-native-router-flux';
 import Button from 'react-native-button';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import renderIf from 'render-if';
-import { Divider } from 'react-native-material-design';
+import * as Animatable from 'react-native-animatable';
 
 export default class Intro extends Component {
 
@@ -13,71 +13,62 @@ export default class Intro extends Component {
     super(props);
     this.state = {
       visible: false,
-      login: false,
+      button: false,
     };
   }
 
   componentDidMount() {
-    setTimeout(() => this.setState({ visible: true }), 2500);
+    setTimeout(() => this.setState({ visible: true }), 1500);
+    setTimeout(() => this.setState({ button: true }), 2500);
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Image
-          source={require('../../Img/logo.png')}
-          style={styles.logo}
-        />
-        {renderIf(this.state.visible)(
-          <View>
-            <Button
-              containerStyle={styles.ContainerButton}
-              style={{ fontSize: 20, color: Colors.MAIN }}
-              onPress={() => this.setState({ login: true })}
-            >
-              Log in
-              <Icon name="chevron-right" size={25} color={Colors.MAIN} />
-            </Button>
-            <Button
-              containerStyle={styles.ContainerButton}
-              style={{ fontSize: 20, color: Colors.MAIN }}
-              onPress={() => Actions.scan({ isSimple: true })}
-            >
-              Simple Scan
-              <Icon name="chevron-right" size={25} color={Colors.MAIN} />
-            </Button>
-          </View>
-        )}
-        {renderIf(this.state.login)(
-          <Modal
-            animationType={'fade'}
-            transparent
-            visible={this.state.login}
-            onRequestClose={() => this.setState({ login: false })}
+        {renderIf(!this.state.button)(
+          <Animatable.View
+            style={styles.containerImage}
+            animation={this.state.visible ? 'fadeOut' : null}
           >
-            <View style={styles.modalBackgroundStyle}>
-              <View style={styles.innerContainerTransparentStyle}>
-                <Text style={styles.modalTitle}>Log In</Text>
-                <Divider />
-                <View>
-                  <Text>
-                    Login/register
-                  </Text>
-                </View>
-                <Divider />
-                <Button
-                  containerStyle={styles.modalButton}
-                  style={{ fontSize: 20, color: 'white' }}
-                  onPress={() => {
-                    this.setState({ login: false });
-                    Actions.main();
-                  }}
-                >
-                  Login
-                </Button>
-              </View>
-            </View>
-          </Modal>
+            <Image
+              source={require('../../Img/logo.png')}
+              style={styles.logo}
+            />
+          </Animatable.View>
+        )}
+        {renderIf(this.state.button)(
+          <View style={styles.container}>
+            <Animatable.View
+              style={styles.containerImage}
+              animation={this.state.visible ? 'slideInDown' : null}
+            >
+              <Image
+                source={require('../../Img/logo.png')}
+                style={styles.logo}
+              />
+            </Animatable.View>
+            <Animatable.View
+              style={styles.buttons}
+              animation="slideInUp"
+            >
+              <Button
+                containerStyle={styles.ContainerButton}
+                style={{ fontSize: 20, color: Colors.MAIN }}
+                onPress={() => Actions.main()}
+              >
+                Log in
+                <Icon name="chevron-right" size={25} color={Colors.MAIN} />
+              </Button>
+              <Button
+                containerStyle={styles.ContainerButton}
+                style={{ fontSize: 20, color: Colors.MAIN }}
+                onPress={() => Actions.scan({ isSimple: true })}
+              >
+                Simple Scan
+                <Icon name="chevron-right" size={25} color={Colors.MAIN} />
+              </Button>
+            </Animatable.View>
+          </View>
         )}
       </View>
     );
@@ -89,7 +80,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.MAIN,
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
+  },
+  containerImage: {
+    backgroundColor: '#fff',
+    borderRadius: 50,
+  },
+  logo: {
+    width: Dimensions.get('window').width * 0.6,
+    height: Dimensions.get('window').width * 0.6,
+  },
+  buttons: {
+    marginTop: 50,
   },
   ContainerButton: {
     marginBottom: 10,
@@ -103,18 +105,6 @@ const styles = StyleSheet.create({
   icon: {
     alignSelf: 'center',
   },
-  modalBackgroundStyle: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  innerContainerTransparentStyle: {
-    backgroundColor: '#fff',
-    padding: 5,
-    borderRadius: 8,
-    width: Dimensions.get('window').width * 0.6,
-  },
   modalTitle: {
     fontSize: 20,
     justifyContent: 'center',
@@ -127,10 +117,5 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: Colors.BLUE,
   },
-  logo: {
-    width: Dimensions.get('window').width * 0.6,
-    height: Dimensions.get('window').width * 0.6,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-  },
+
 });
