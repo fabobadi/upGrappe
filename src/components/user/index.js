@@ -18,6 +18,7 @@ export default class User extends Component {
         <Text>2. Role (admin, writer, reader)</Text>
         <Text>3. Suspribted vineyards</Text>
         <Text>4. LogOut</Text>
+        <Text>5. Creditos</Text>
       </View>
     );
   }

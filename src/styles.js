@@ -13,6 +13,7 @@ export const Colors = {
   IOS: '#EFEFF2',
   RED: '#BC3B24',
   GRAY: '#7E7672',
+  BLUE: 'rgb(52, 152, 219)',
 };
 
 const desing = StyleSheet.create({

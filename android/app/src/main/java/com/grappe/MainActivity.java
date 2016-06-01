@@ -2,11 +2,13 @@ package com.grappe;
 
 import com.facebook.react.ReactActivity;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
-import io.realm.react.RealmReactPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.react.rnspinkit.RNSpinkitPackage;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
+
+import android.content.Intent; // <--- import
+import android.content.res.Configuration; // <--- import
+import com.github.yamill.orientation.OrientationPackage;  // <--- import
 
 import java.util.Arrays;
 import java.util.List;
@@ -40,9 +42,16 @@ public class MainActivity extends ReactActivity {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
             new RCTCameraPackage(),
-            new RealmReactPackage(),
             new VectorIconsPackage(),
-            new RNSpinkitPackage()
+            new OrientationPackage(this)
         );
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Intent intent = new Intent("onConfigurationChanged");
+        intent.putExtra("newConfig", newConfig);
+        this.sendBroadcast(intent);
     }
 }
