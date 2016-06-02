@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Dimensions, Image } from 'react-native';
+import { View, StyleSheet, Dimensions, Image, TextInput } from 'react-native';
 import { Colors } from '../../styles';
 import { Actions } from 'react-native-router-flux';
 import Button from 'react-native-button';
@@ -14,7 +14,12 @@ export default class Intro extends Component {
     this.state = {
       visible: false,
       button: false,
+      login: false,
+      user: '',
+      password: '',
     };
+    this.presentLogo = this.presentLogo.bind(this);
+    this.showButton = this.showButton.bind(this);
   }
 
   componentDidMount() {
@@ -22,53 +27,65 @@ export default class Intro extends Component {
     setTimeout(() => this.setState({ button: true }), 2500);
   }
 
+  presentLogo() {
+    return (
+      <Animatable.View
+        style={styles.containerImage}
+        animation={this.state.visible ? 'fadeOut' : null}
+      >
+        <Image
+          source={require('../../Img/logo.png')}
+          style={styles.logo}
+        />
+      </Animatable.View>
+    );
+  }
+
+  showButton() {
+    return (
+      <View style={styles.container}>
+        <Animatable.View
+          style={styles.containerImage}
+          animation={this.state.visible ? 'slideInDown' : null}
+        >
+          <Image
+            source={require('../../Img/logo.png')}
+            style={styles.logo}
+          />
+        </Animatable.View>
+        <Animatable.View
+          style={styles.buttons}
+          animation="slideInUp"
+        >
+          <Button
+            containerStyle={styles.ContainerButton}
+            style={{ fontSize: 20, color: Colors.MAIN }}
+            onPress={() => Actions.login()}
+          >
+          Log in
+            <Icon name="chevron-right" size={25} color={Colors.MAIN} />
+          </Button>
+          <Button
+            containerStyle={styles.ContainerButton}
+            style={{ fontSize: 20, color: Colors.MAIN }}
+            onPress={() => Actions.main()}
+          >
+          Simple Scan
+            <Icon name="chevron-right" size={25} color={Colors.MAIN} />
+          </Button>
+        </Animatable.View>
+      </View>
+    );
+  }
+
   render() {
     return (
       <View style={styles.container}>
         {renderIf(!this.state.button)(
-          <Animatable.View
-            style={styles.containerImage}
-            animation={this.state.visible ? 'fadeOut' : null}
-          >
-            <Image
-              source={require('../../Img/logo.png')}
-              style={styles.logo}
-            />
-          </Animatable.View>
+          this.presentLogo
         )}
         {renderIf(this.state.button)(
-          <View style={styles.container}>
-            <Animatable.View
-              style={styles.containerImage}
-              animation={this.state.visible ? 'slideInDown' : null}
-            >
-              <Image
-                source={require('../../Img/logo.png')}
-                style={styles.logo}
-              />
-            </Animatable.View>
-            <Animatable.View
-              style={styles.buttons}
-              animation="slideInUp"
-            >
-              <Button
-                containerStyle={styles.ContainerButton}
-                style={{ fontSize: 20, color: Colors.MAIN }}
-                onPress={() => Actions.main()}
-              >
-                Log in
-                <Icon name="chevron-right" size={25} color={Colors.MAIN} />
-              </Button>
-              <Button
-                containerStyle={styles.ContainerButton}
-                style={{ fontSize: 20, color: Colors.MAIN }}
-                onPress={() => Actions.scan({ isSimple: true })}
-              >
-                Simple Scan
-                <Icon name="chevron-right" size={25} color={Colors.MAIN} />
-              </Button>
-            </Animatable.View>
-          </View>
+          this.showButton
         )}
       </View>
     );
@@ -102,20 +119,4 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: 'white',
   },
-  icon: {
-    alignSelf: 'center',
-  },
-  modalTitle: {
-    fontSize: 20,
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
-  modalButton: {
-    alignItems: 'center',
-    marginTop: 5,
-    overflow: 'hidden',
-    borderRadius: 8,
-    backgroundColor: Colors.BLUE,
-  },
-
 });

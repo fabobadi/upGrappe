@@ -8,6 +8,7 @@ import TabIcon from './components/tab-icon';
 import Platform from './utils/platform';
 
 import Intro from './components/intro';
+import Login from './components/login';
 
 import Activities from './components/activities';
 import Tutorial from './components/tutorial';
@@ -77,6 +78,7 @@ export default class Routing extends Component {
       <Router>
         <Scene key="root">
           <Scene key="intro" hideNavBar initial component={Intro} type={'replace'} />
+          <Scene key="login" hideNavBar component={Login} />
           <Scene
             key="main"
             tabs
