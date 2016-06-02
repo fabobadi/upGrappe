@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { View, StyleSheet, BackAndroid } from 'react-native';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 
@@ -7,8 +7,16 @@ import Toolbar from './components/toolbar/';
 import TabIcon from './components/tab-icon';
 import Platform from './utils/platform';
 
-import Activities from './components/Activities';
-import Analytics from './components/Analytics';
+import Intro from './components/intro';
+import Login from './components/login';
+
+import Activities from './components/activities';
+import Tutorial from './components/tutorial';
+import Vineyard from './components/vineyard';
+import User from './components/user';
+
+import Scan from './components/scan';
+import PhotoAnalizis from './components/photoAnalizis';
 
 // Development help
 import Template from './utils/template';
@@ -36,11 +44,10 @@ export default class Routing extends Component {
   goBack() {
     try {
       Actions.pop();
-      return true;
     } catch (err) {
       BackAndroid.exitApp();
-      return true;
     }
+    return true;
   }
 
   render() {
@@ -48,35 +55,34 @@ export default class Routing extends Component {
       panHandlers: null,
     };
 
-    const padding = {
-      sceneStyle: { paddingTop: Metrics.NAVBAR_HEIGHT },
-    };
-
-    const transparent = {
-      navigationBarStyle: styles.transparent,
-    };
-
     const navbar = {
       navBar: Toolbar,
     };
 
     const tab = {
-      ...padding,
+      // ...padding,
       ...navbar,
       icon: TabIcon,
+      sceneStyle: { paddingBottom: Metrics.NAVBAR_HEIGHT },
+    };
+
+    const navTab = {
+      ...navbar,
+      icon: TabIcon,
+      sceneStyle: { paddingBottom: Metrics.NAVBAR_HEIGHT, paddingTop: Metrics.NAVBAR_HEIGHT },
     };
 
     const noBack = {
       ...noSwipe,
       renderLeftButton: () => <View />,
     };
-
     return (
       <Router>
         <Scene key="root">
+          <Scene key="intro" hideNavBar initial component={Intro} type={'replace'} />
+          <Scene key="login" hideNavBar component={Login} />
           <Scene
             key="main"
-            initial
             tabs
             hideNavBar
             default="Grappe"
@@ -84,15 +90,16 @@ export default class Routing extends Component {
             tabBarStyle={styles.tabbar}
             {...noBack}
           >
-            <Scene key="activities" component={Activities} title="Activities" image="tasks" {...tab} />
-            <Scene key="analytics" component={Analytics} title="Analytics" image="line-chart" {...tab} />
-            <Scene key="map" component={Activities} title="Map" image="map" {...tab} />
-            <Scene key="user" component={Activities} title="User" image="user" {...tab} />
+            <Scene key="activities" hideNavBar component={Activities} title="Activities" image="tasks" {...tab} />
+            <Scene key="vineyard" component={Vineyard} title="Vineyards" image="glass" {...navTab} />
+            <Scene key="tutorial" hideNavBar component={Tutorial} title="Tutorial" image="book" {...tab} />
+            <Scene key="user" hideNavBar component={User} title="User" image="user" {...tab} />
           </Scene>
-
-          {/* Set this to 'initial' to see it */}
-          <Scene key="template" component={Template} title="Template" navigationBarStyle={styles.transparent} />
+          <Scene hideNavBar key="scan" component={Scan} />
+          <Scene key="photoAnalizis" component={PhotoAnalizis} />
         </Scene>
+        {/* Set this to 'initial' to see it */}
+        <Scene key="template" component={Template} title="Template" navigationBarStyle={styles.transparent} />
       </Router>
     );
   }

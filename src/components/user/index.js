@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-export default class Map extends Component {
+export default class User extends Component {
 
   constructor(props) {
     super(props);
@@ -13,7 +13,12 @@ export default class Map extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Hello world</Text>
+        <Text>User info</Text>
+        <Text>1. Name, mail, photo</Text>
+        <Text>2. Role (admin, writer, reader)</Text>
+        <Text>3. Suspribted vineyards</Text>
+        <Text>4. LogOut</Text>
+        <Text>5. Creditos</Text>
       </View>
     );
   }

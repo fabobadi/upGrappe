@@ -21,7 +21,7 @@ export const Android = ({
     rightTitle,
     onLeft,
     leftTitle,
-    ...props,
+    // ...props,
   }) => {
   const actions = [];
   const left = leftTitle && onLeft;

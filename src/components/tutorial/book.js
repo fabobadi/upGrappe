@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-export default class Map extends Component {
+export default class Book extends Component {
 
   constructor(props) {
     super(props);
