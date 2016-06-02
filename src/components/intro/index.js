@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Dimensions, Image, TextInput } from 'react-native';
+import { View, StyleSheet, Dimensions, Image } from 'react-native';
 import { Colors } from '../../styles';
 import { Actions } from 'react-native-router-flux';
 import Button from 'react-native-button';
@@ -68,7 +68,7 @@ export default class Intro extends Component {
           <Button
             containerStyle={styles.ContainerButton}
             style={{ fontSize: 20, color: Colors.MAIN }}
-            onPress={() => Actions.main()}
+            onPress={() => Actions.scan()}
           >
           Simple Scan
             <Icon name="chevron-right" size={25} color={Colors.MAIN} />

@@ -97,10 +97,9 @@ export default class SimpleScan extends Component {
                 <Divider />
                 <Button
                   containerStyle={styles.ContainerButton}
-                  style={{ fontSize: 18, color: 'white' }}
+                  style={{ fontSize: 18, color: Colors.BLUE }}
                   onPress={() => this.setState({ settings: false })}
                 >
-                  <Icon name="times-circle" size={18} color={'white'} style={{ marginRight: 10 }} />
                   Close
                 </Button>
               </View>
@@ -129,16 +128,15 @@ export default class SimpleScan extends Component {
                   </Text>
                   <Image
                     source={require('./Img/help.png')}
-                    style={{ width: Dimensions.get('window').width * 0.55, height: 100 }}
+                    style={styles.image}
                   />
                 </View>
                 <Divider />
                 <Button
                   containerStyle={styles.ContainerButton}
-                  style={{ fontSize: 20, color: 'white' }}
+                  style={{ fontSize: 20, color: Colors.BLUE }}
                   onPress={() => this.setState({ help: false })}
                 >
-                  <Icon name="times-circle" size={22} color={'white'} style={{ marginRight: 10 }} />
                   Close
                 </Button>
               </View>
@@ -240,7 +238,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     padding: 5,
     borderRadius: 8,
-    width: Dimensions.get('window').width,
+    width: Dimensions.get('window').width / 2,
   },
   modalTitle: {
     fontSize: 20,
@@ -250,12 +248,15 @@ const styles = StyleSheet.create({
   ContainerButton: {
     alignItems: 'center',
     marginTop: 5,
-    overflow: 'hidden',
-    borderRadius: 8,
-    backgroundColor: Colors.BLUE,
   },
   modalContent: {
     justifyContent: 'space-around',
     padding: 10,
+  },
+  image: {
+    alignSelf: 'center',
+    marginBottom: 10,
+    width: Dimensions.get('window').width * 0.4,
+    height: 100,
   },
 });

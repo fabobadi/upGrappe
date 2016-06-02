@@ -22,7 +22,7 @@ export default class NextActivities extends Component {
           >
             <Card.Body>
               <View style={styles.cardDeshoje}>
-                <Text style={{ color: 'white', fontSize: 25 }}>All Activities</Text>
+                <Text style={{ color: 'white', fontSize: 25 }}>Next Activities</Text>
                 <Icon name="plus" size={20} style={styles.icon} />
               </View>
             </Card.Body>

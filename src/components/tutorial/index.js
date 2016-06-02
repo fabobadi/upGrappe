@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-// import { Actions } from 'react-native-router-flux';
+import { View, StyleSheet } from 'react-native';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+import { Colors } from '../../styles';
+
+import Doc from './documentation';
+import Book from './book';
+import Video from './video';
 
 export default class Tutorial extends Component {
   constructor(props) {
@@ -12,11 +17,24 @@ export default class Tutorial extends Component {
   render() {
     return (
       <View>
-        <Text>Tutorial</Text>
-        <Text>1. Video</Text>
-        <Text>2. Documentation</Text>
-        <Text>2. Mini-Book</Text>
+        <View style={styles.container}>
+          <ScrollableTabView
+            tabBarBackgroundColor={Colors.MAIN}
+            tabBarActiveTextColor={Colors.WHITE}
+            tabBarUnderlineColor={Colors.RED}
+          >
+            <Video tabLabel="Video" />
+            <Book tabLabel="Book" />
+            <Doc tabLabel="Documentation" />
+          </ScrollableTabView>
+        </View>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});

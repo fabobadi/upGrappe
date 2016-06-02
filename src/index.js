@@ -55,10 +55,6 @@ export default class Routing extends Component {
       panHandlers: null,
     };
 
-    // const padding = {
-    //   sceneStyle: { paddingTop: Metrics.NAVBAR_HEIGHT },
-    // };
-
     const navbar = {
       navBar: Toolbar,
     };
@@ -68,6 +64,12 @@ export default class Routing extends Component {
       ...navbar,
       icon: TabIcon,
       sceneStyle: { paddingBottom: Metrics.NAVBAR_HEIGHT },
+    };
+
+    const navTab = {
+      ...navbar,
+      icon: TabIcon,
+      sceneStyle: { paddingBottom: Metrics.NAVBAR_HEIGHT, paddingTop: Metrics.NAVBAR_HEIGHT },
     };
 
     const noBack = {
@@ -89,7 +91,7 @@ export default class Routing extends Component {
             {...noBack}
           >
             <Scene key="activities" hideNavBar component={Activities} title="Activities" image="tasks" {...tab} />
-            <Scene key="vineyard" hideNavBar component={Vineyard} title="Vineyards" image="glass" {...tab} />
+            <Scene key="vineyard" component={Vineyard} title="Vineyards" image="glass" {...navTab} />
             <Scene key="tutorial" hideNavBar component={Tutorial} title="Tutorial" image="book" {...tab} />
             <Scene key="user" hideNavBar component={User} title="User" image="user" {...tab} />
           </Scene>
